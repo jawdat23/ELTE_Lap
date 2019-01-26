@@ -418,7 +418,4 @@ def generate_data(tree,attributes,length):
 tree = run_decision_tree(data,attributes,target)
 generated_data = generate_data(tree,attributes,2000)
 evaluate_per(generated_data, data, attributes)
-print("Evaluation done")
-print("Evaluation done")
-#evaluate(generated_data, data, attributes)
 print("done")
