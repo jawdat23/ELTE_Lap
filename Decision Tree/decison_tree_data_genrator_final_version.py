@@ -284,6 +284,13 @@ def get_attribute_index(data, attributes):
 
 
 def evaluate(generated_data, data, attributes):
+    attributes = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'quality']
+    fixed_gen_data = []
+    for row in generated_data:
+        fixed_row = []
+        for val in row:
+            fixed_row.append(row[val])
+        fixed_gen_data.append(fixed_row)
     attributes_index = get_attribute_index(data, attributes)
     numed_data = []
     numed_gen_data = []
@@ -291,15 +298,21 @@ def evaluate(generated_data, data, attributes):
         i = 0
         numed_row = []
         for val in row:
-            v = attributes_index[attributes[i]][val]
+            try:
+                v = attributes_index[attributes[i]][val]
+            except:
+                v = 0
             i += 1
             numed_row.append(v)
         numed_data.append(numed_row)
-    for row in generated_data:
+    for row in fixed_gen_data:
         i = 0
         numed_row = []
         for val in row:
-            v = attributes_index[attributes[i]][row[val]]
+            try:
+                v = attributes_index[attributes[i]][row[val]]
+            except:
+                v = 0
             i += 1
             numed_row.append(v)
         numed_gen_data.append(numed_row)
@@ -418,4 +431,7 @@ def generate_data(tree,attributes,length):
 tree = run_decision_tree(data,attributes,target)
 generated_data = generate_data(tree,attributes,2000)
 evaluate_per(generated_data, data, attributes)
+print("Evaluation done")
+# evaluate(generated_data, data, attributes)
+# print("Evaluation done")
 print("done")
