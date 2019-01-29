@@ -427,7 +427,8 @@ def generate_data(tree,attributes,length):
             tempDict = tempDict[chosenVal]
     return generated_data
 
-(data,attributes,target) = read_data("cars.data")
+file_name = "cars.data"
+(data,attributes,target) = read_data(file_name)
 tree = run_decision_tree(data,attributes,target)
 generated_data = generate_data(tree,attributes,2000)
 evaluate_per(generated_data, data, attributes)
